@@ -2,7 +2,7 @@
 
 
 
-Note on viz tools: I initially attempted to use Power BI Desktop and Hex for visualizations. Both required a corporate domain email for signup/authentication, which wasn't available in this context. I pivoted to Snowflake's built-in Snowsight charting as a practical alternative — it's directly connected to the data and requires no additional tooling. In a real work environment I'd use Tableau, Power BI, or Hex connected to Snowflake.
+Note on viz tools: I initially attempted to use Power BI Desktop and Hex for visualizations. Both required a corporate domain email for signup/authentication, which wasn't available in this context. I pivoted to Snowflake's built-in Snowsight charting as a practical alternative as it's directly connected to the data and requires no additional tooling. In a real work environment I'd use Tableau, Power BI, or Hex connected to Snowflake.
 
 
 
