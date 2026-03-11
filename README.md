@@ -25,7 +25,7 @@ use database screening_bi;
 ```
 /sql        — All queries used in the analysis, numbered in order of exploration
 /docs       — Written findings, data quality notes, and "what's next" list
-/visuals    — Screenshots of Power BI visuals
+/visuals    — Screenshots of visuals
 README.md   — This file
 ```
 
