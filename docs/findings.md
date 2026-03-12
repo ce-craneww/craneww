@@ -43,16 +43,22 @@ Warehouse runs at 83-84% net margin every year. It's a small slice of volume but
 
 ### 3. On-time delivery has a real problem in Air and Ocean
 
-| Mode | On-Time % |
-|------|-----------|
-| Ground | 95.4% |
-| Warehouse | 95.2% |
-| Customs Brokerage | 91.5% |
-| **Air** | **87.0%** |
-| **Ocean** | **74.0%** |
-| Rail | 66.0% (small sample) |
+| Mode | On-Time % | % of Records Measurable |
+|------|-----------|------------------------|
+| Ground | 95.4% | 85.4% |
+| Warehouse | 95.2% | 4.2% ⚠️ |
+| Customs Brokerage | 91.5% | 15.1% ⚠️ |
+| **Air** | **87.0%** | **91.8%** |
+| **Ocean** | **74.0%** | **93.3%** |
+| Rail | 66.0% | 97.9% |
 
-**Air at 87% is the most surprising finding.** Customers choosing air freight are paying a premium specifically for speed and reliability. A 13% late rate is a customer satisfaction and retention risk. Ocean at 74% is more expected (port congestion, weather, customs delays) but still worth tracking by trade lane and carrier.
+**The only statistically reliable on-time figures are Air, Ocean, and Rail** — 91-98% of those shipments have both delivery and requested delivery dates populated.
+
+**Warehouse (4.2% measurable) and Customs Brokerage (15.1% measurable) on-time stats should not be cited** — the sample is too small and likely non-representative. This is a data quality issue worth investigating: why are most warehouse and customs records missing one or both dates?
+
+**Air at 87% is the most actionable finding.** Customers choosing air freight are paying a premium specifically for speed and reliability. A 13% late rate is a customer satisfaction and retention risk. I'd want to drill into which carriers and trade lanes are driving the lateness before drawing final conclusions.
+
+**Ocean at 74%** is more expected given port congestion and transit complexity, but still worth tracking by trade lane and carrier.
 
 ---
 
