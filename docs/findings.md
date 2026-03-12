@@ -15,15 +15,15 @@ A new CEO asked for a review of the current data to understand "how things are g
 
 ## What the Data Says
 
-### 1. Revenue is growing — but watch the margins
+### 1. Revenue normalized post-boom — but margins are actually improving
 
-| Year | Total Revenue | Total Net Revenue | Avg Net Margin |
-|------|--------------|------------------|----------------|
-| 2021 | ~$1.2B | ~$215M | ~23% |
-| 2022 | ~$2.1B | ~$429M | ~24% |
-| 2023 | ~$1.7B | ~$376M | ~23% |
+| Year | Total Revenue | Total Net Revenue | Net Margin % |
+|------|--------------|------------------|--------------|
+| 2021 | $8.4B | $2.0B | 24.1% |
+| 2022 | $9.8B | $2.5B | 25.8% |
+| 2023 | $6.1B | $1.8B | 29.6% |
 
-Revenue peaked in 2022 and pulled back in 2023. Net margin held relatively steady (~23%), which is a good sign — the business didn't buy revenue at the expense of profit. Worth understanding what drove the 2022 spike (macro freight boom post-COVID is a likely factor).
+Revenue peaked in 2022 (likely driven by the post-COVID freight boom and elevated shipping rates) and pulled back sharply in 2023 — a 38% drop. However, **net margin improved every single year: 24% → 26% → 30%.** This is the most important headline for the CEO: the business shed lower-margin volume during the normalization but retained its most profitable work. That's a sign of pricing discipline and improving customer/lane mix, not a business in decline.
 
 ---
 
@@ -100,7 +100,6 @@ Warehouse runs at 83-84% net margin every year. It's a small slice of volume but
 
 ## What I'd Do Next
 
-**If I had another 2 hours:**
 - Trade lane analysis (top origin → destination pairs by volume and margin)
 - Top 10 customer revenue concentration
 - Carrier-level on-time scorecard
