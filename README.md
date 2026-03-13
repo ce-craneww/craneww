@@ -1,17 +1,11 @@
 # Crane Worldwide Logistics — Analytics Take-Home Exercise
 
-
-
-Note on viz tools: I initially attempted to use Power BI Desktop and Hex for visualizations. Both required a corporate domain email for signup/authentication, which wasn't available in this context. I pivoted to Snowflake's built-in Snowsight charting as a practical alternative as it's directly connected to the data and requires no additional tooling. In a real work environment I'd use Tableau, Power BI, or Hex connected to Snowflake.
-
-
-
-## Scenario
-A new CEO just started and asked for a review of current data to understand "how things are going." This repo contains my exploratory analysis, key SQL queries, visuals, and a summary of findings and recommendations.
+A new CEO just started and asked for a review of current data to understand "how things are going." This repo contains my exploratory SQL, findings, data quality observations, and an interactive dashboard.
 
 ---
 
 ## Snowflake Setup
+
 ```sql
 use role screening_bi;
 use warehouse screening_wh;
@@ -23,54 +17,28 @@ use database screening_bi;
 ## Repo Structure
 
 ```
-/sql        — All queries used in the analysis, numbered in order of exploration
-/docs       — Written findings, data quality notes, and "what's next" list
-/visuals    — Screenshots of visuals
+/sql        — Queries used in the analysis, numbered in order of exploration
+/docs       — Full findings, data quality notes, and what I'd do next
+/visuals    — Interactive dashboard + chart screenshots
 README.md   — This file
 ```
 
----
-
-## Key Findings (Summary)
-
-1. **Revenue is growing but net margins are under pressure** — especially in AIR, the highest-volume mode
-2. **Warehouse is a hidden gem** — 83%+ net margin, growing volume year over year
-3. **Ocean on-time delivery is 74%** — the biggest operational problem in the data
-4. **AIR on-time is only 87%** — surprising for a premium service, worth investigating
-5. **Industrial vertical dominates volume** — customer concentration risk worth flagging
+**Dashboard:** [visuals/dashboard.html](https://ce-craneww.github.io/craneww/visuals/dashboard.html)
+**Full findings:** [docs/findings.md](docs/findings.md)
 
 ---
 
-## Data Quality Notes
+## Key Findings
 
-- Some `CARRIERNAME` values prefixed with `**Deactivated**` — active/inactive carrier flag missing from schema
-- `NET_REVENUE_USD` contains negative values — likely cost corrections or write-offs, needs business clarification
-- `VERTICAL` contains `N\A` (with backslash) instead of NULL — needs normalization
-- `VESSEL` and `VOYAGE` fields in CONTAINERS have significant nulls
-- `QUANTITY` in CONTAINERS is a string (`"1 X 40HC"`) — not directly aggregatable without parsing
-- Some FILES have `REVENUE_USD = 0` — unclear if these are test records or valid zero-revenue transactions
-- `DELIVERY_DATE` is null for a subset of records — may be in-transit or data entry gaps
+1. **Revenue normalized post-boom but margins are improving** — net margin grew from 24% in 2021 to 30% in 2023 even as revenue declined 38% from the 2022 peak
+2. **Warehouse is the highest-margin service at 84%** — and volume is growing year over year
+3. **Air on-time delivery is only 87%** — surprising for a premium mode, customers are paying for speed and reliability
+4. **Ocean on-time is 74%** — expected given complexity, but worth tracking by carrier and trade lane
+5. **Cruise/Marine/Hospitality vertical runs 42% margin** at $322K avg revenue per shipment — small volume, high strategic value
+6. **CN→US dominates trade lanes** at 19,812 shipments but only 19.8% margin — US→GB at 34.3% is the standout
 
 ---
 
-## What I'd Do Next (If This Were Real)
+## Note on Visualizations
 
-**Data modeling:**
-- Build a proper dimensional model: `dim_customer`, `dim_carrier`, `dim_geography`, `fct_shipments`
-- Parse `QUANTITY` field in CONTAINERS into numeric container count + type
-- Normalize `VERTICAL` values and map `N\A` → NULL
-- Add a `transit_days` derived field (DELIVERY_DATE - ORDER_DATE)
-- Strip `**Deactivated**` prefix and add `is_active` flag to carrier dimension
-
-**Analysis I'd want to add:**
-- Trade lane analysis (origin country → destination country pairs by volume and margin)
-- Customer concentration / top 10 customers by revenue
-- Carrier performance scorecard (on-time % + avg transit days by carrier)
-- YoY growth rates by vertical and product mode
-- Late shipment deep-dive: which trade lanes and carriers drive the most late deliveries?
-
-**Production path:**
-- Move SQL into dbt models with tests and documentation
-- Build a Snowflake-connected Power BI semantic layer with row-level security by vertical
-- Schedule daily refresh and add alerting for on-time % drops below threshold
-- Validate negative NET_REVENUE rows with finance before publishing margin metrics
+Power BI and Hex both require a corporate domain email to sign up, which wasn't available in this context. I built an HTML dashboard using Chart.js with hardcoded values from the verified SQL query results — open `visuals/dashboard.html` in any browser. The dashboard is not connected live to Snowflake. In production I'd connect Power BI or Tableau directly to the data source for live refresh.
